@@ -4,6 +4,7 @@ import random
 import numpy as np
 import json
 from helper import *
+from data import *
 
 from datetime import datetime
 from datetime import timedelta
@@ -14,8 +15,7 @@ class Player:
 	def __init__(self, name, save_file=None):
 
 		self.save_file = save_file
-		self.world = World()
-		self.sites = self.world.world_map.sites
+		self.sites = world_sites
 
 		if os.path.isfile(save_file):
 			# load saved data
@@ -95,7 +95,7 @@ class Player:
 		dest = self.destination.site_name
 		earning = int(np.random.normal(60, 20))
 		self.bank += earning
-		return dest, earning, activities[ random.randrange(len(activities))]
+		return dest, earning, genearl_acts[ random.randrange(len(genearl_acts))]
 
 	def refresh(self):
 		if (self.arrive_time is not None):

@@ -27,7 +27,7 @@ class Site:
 	# 	self.wuxue = wuxue
 
 
-
+'''
 def generate_all_sites():
 
 	sites = {}
@@ -149,3 +149,4 @@ def generate_all_sites():
 	sites['梅庄'] = Site(name, paths, npcs)
 
 	return sites
+'''

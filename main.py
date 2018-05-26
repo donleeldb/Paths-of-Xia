@@ -35,8 +35,11 @@ if __name__ == '__main__':
 
 		if (player.at_door_step): 
 			dest, earn, act = player.arrive_home()
-			print (char_name + '游历回来啦。这次旅程最远去到了' + dest, + '。 一路上' + char_name + act + str(earn) + '碎银带回家。')
-
+			print (char_name + '游历回来啦。这次旅程最远去到了')
+			print (char_name + '这次旅程最远去到了' + dest + '。 ')
+			print ('这一路上，' + char_name + act + str(earn) + '碎银带回家。')
+			continue
+			
 		elif (player.is_away):
 			print (char_name + "出门游历去了。请耐心等待。。。")
  
