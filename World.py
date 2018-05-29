@@ -26,6 +26,10 @@ class Site:
 	# def add_wuxue ( wuxue ):
 	# 	self.wuxue = wuxue
 
+class Npc:
+	def __init__(self, name, wuxue ): 
+		self.name = name
+		self.wuxue = wuxue
 
 '''
 def generate_all_sites():
