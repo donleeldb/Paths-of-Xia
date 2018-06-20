@@ -17,14 +17,6 @@ class Site:
 		# self.wuxue = wuxue
 		self.paths = paths
 
-	# def add_paths ( paths ):
-	# 	self.paths = paths
-
-	# def add_npcs ( npcs ):
-	# 	self.npcs = npcs
-
-	# def add_wuxue ( wuxue ):
-	# 	self.wuxue = wuxue
 
 class Npc:
 	def __init__(self, name, wuxue ): 

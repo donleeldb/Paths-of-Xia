@@ -22,7 +22,7 @@ class Player:
 			with open(save_file) as input:
 				save_data = json.load(input)
 				self.name = save_data['name']
-				self.wuxue = save_data['wuxue']
+				self.wuxue = set(save_data['wuxue'])
 				self.is_away = save_data['is_away']
 				self.is_home = save_data['is_home']
 				self.at_door_step = save_data['at_door_step']
@@ -39,7 +39,7 @@ class Player:
 			input.close()
 		else: 
 			self.name = name
-			self.wuxue = ['普通拳']
+			self.wuxue = {'普通拳'}
 			self.is_away = 0
 			self.is_home = 1
 			self.at_door_step = 0
@@ -51,8 +51,11 @@ class Player:
 		
 		
 	def choose_one_wuxue(self):
+		rdm = int(random.uniform(0, len(list(self.wuxue))))
+		return list(self.wuxue)[rdm]
 
-		return self.wuxue[0]
+	def get_all_wuxue(self):
+		return list(self.wuxue)
 
 	def set_off(self, cash):
 
@@ -70,7 +73,7 @@ class Player:
 			next_site = self.sites[next_site_name]
 			if curr_site.paths[next_site_name] <= cash:
 				cash -= curr_site.paths[next_site_name]
-				travel_time += int(np.random.normal(300, 20))
+				travel_time += int(np.random.normal(300, 5))
 				curr_site = next_site
 			else: 
 				travel_finished = 1
@@ -93,9 +96,24 @@ class Player:
 		self.is_home = 1
 		self.at_door_step = 0
 		dest = self.destination.site_name
+
+		npc_name = None
+		new_wuxue = None
+		if len(self.destination.npcs) > 0:
+			chance = np.random.uniform(0.0, 1.0)
+			if chance < 0.25:
+				rdm = int(random.uniform(0, len(self.destination.npcs)))
+				npc = self.destination.npcs[rdm]
+				npc_name = npc.name
+				num_wuxue = len(npc.wuxue)
+				if num_wuxue > 0:
+					rdm = int(random.uniform(0, num_wuxue))
+					new_wuxue = npc.wuxue[rdm]
+					self.wuxue.add(new_wuxue)
+
 		earning = int(np.random.normal(60, 20))
 		self.bank += earning
-		return dest, earning, genearl_acts[ random.randrange(len(genearl_acts))]
+		return dest, earning, genearl_acts[ random.randrange(len(genearl_acts))], npc_name, new_wuxue
 
 	def refresh(self):
 		if (self.arrive_time is not None):
@@ -109,7 +127,7 @@ class Player:
 		with open(self.save_file, 'w', encoding='utf-8') as output:
 			save_dict= {}
 			save_dict['name'] = self.name
-			save_dict['wuxue'] = self.wuxue
+			save_dict['wuxue'] = list(self.wuxue)
 			save_dict['is_away'] = self.is_away
 			save_dict['is_home'] = self.is_home
 			save_dict['at_door_step'] = self.at_door_step

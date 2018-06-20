@@ -3,14 +3,25 @@ from World import Npc
 genearl_acts = [	'行侠仗义、并得到百姓的报酬',
 					'劫富济贫、也为自己留了']
 
-world_npcs = [ 	[ 	'洪七公', 2, [	'亢龙有悔', '飞龙在天', '见龙在田', '鸿渐于陆', '潜龙勿用', '突如其来', 
-								'利涉大川', '震惊百里', '或跃在渊', '双龙取水', '鱼跃于渊', '时乘六龙', 
-								'密云不雨', '损则有孚', '龙战于野', '履霜冰至', '鱼跃于渊', '时乘六龙'] ],
-			[ 	'黄药师', 2, [ 	'落英神剑', '弹指神通', '落英神剑掌', '玉箫剑法', '旋风扫叶腿'] ],
-
-		]
 # Generate People
+world_npcs = {}
+name = '洪七公'
+wuxue = [	'亢龙有悔', '飞龙在天', '见龙在田', '鸿渐于陆', '潜龙勿用', '突如其来', 
+			'利涉大川', '震惊百里', '或跃在渊', '双龙取水', '鱼跃于渊', '时乘六龙', 
+			'密云不雨', '损则有孚', '龙战于野', '履霜冰至', '鱼跃于渊', '时乘六龙']
+world_npcs['洪七公'] = Npc(name, wuxue)
 
+name = '黄药师'
+wuxue = [	'落英神剑', '弹指神通', '落英神剑掌', '玉箫剑法', '旋风扫叶腿']
+world_npcs[name] = Npc(name, wuxue)
+
+name = '陆乘风'
+wuxue = [ '旋风扫叶腿']
+world_npcs[name] = Npc(name, wuxue)
+
+name = '天門道人'
+wuxue = [	'泰山剑法']
+world_npcs[name] = Npc(name, wuxue)
 
 # Generate Map
 world_sites = {}
@@ -93,6 +104,7 @@ world_sites['福威镖局'] = Site(name, paths, npcs)
 
 name = '泰山派'
 npcs = []
+npcs.append(world_npcs['天門道人'])
 paths = {}
 world_sites['泰山派'] = Site(name, paths, npcs)
 
@@ -113,6 +125,7 @@ world_sites['燕子坞'] = Site(name, paths, npcs)
 
 name = '归云庄'
 npcs = []
+npcs.append(world_npcs['陆乘风'])
 paths = {}
 world_sites['归云庄'] = Site(name, paths, npcs)
 
@@ -123,6 +136,7 @@ world_sites['玉盘山岛'] = Site(name, paths, npcs)
 
 name = '桃花岛'
 npcs = []
+npcs.append(world_npcs['黄药师'])
 paths = {}
 world_sites['桃花岛'] = Site(name, paths, npcs)
 

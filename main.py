@@ -34,9 +34,11 @@ if __name__ == '__main__':
 		print ('\n\n\n\n'+'='*28 + '游戏' + '='*28)
 
 		if (player.at_door_step): 
-			dest, earn, act = player.arrive_home()
-			print (char_name + '游历回来啦。这次旅程最远去到了')
+			dest, earn, act, npc, new_wx = player.arrive_home()
+			print (char_name + '游历回来啦。')
 			print (char_name + '这次旅程最远去到了' + dest + '。 ')
+			if (npc):
+				print (char_name + '奇遇到了' + npc + '，得其赏识并被传授了一招' + new_wx)
 			print ('这一路上，' + char_name + act + str(earn) + '碎银带回家。')
 			continue
 			
@@ -71,6 +73,12 @@ if __name__ == '__main__':
 			elif (cmd == -2):
 				print ('-'*28 + '指令' + '-'*28)
 				print ('正在刷新。。')
+				cmd_accepted = 1
+			elif (cmd ==-1):
+				print ('-'*28 + '指令' + '-'*28)
+				wuxue_list = player.get_all_wuxue()
+				print (char_name + '现在掌握的武学有：')
+				print (wuxue_list)
 				cmd_accepted = 1
 			else:
 				print ("请输入正确指令。")
