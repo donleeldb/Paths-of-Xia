@@ -5,83 +5,77 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-    [SerializeField] private float QingGong = 1f;
-    [SerializeField] private float YingGong = 1f;
-    [SerializeField] private float RuanGong = 1f;
-    [SerializeField] private float YanGong = 1f;
-    [SerializeField] private float ErGong = 1f;
-    [SerializeField] private float NeiGongYang = 1f;
-    [SerializeField] private float NeiGongYin = 1f;
-
-    private string playerState;
-    private string playerStatus;
-
+    private PlayerInfo playerInfo;
 
     // Use this for initialization
     void Start () {
-        //playerState = "Home";
-        //playerStateText.text = "started";
+        playerInfo = new PlayerInfo();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //playerQingGongText.text = "轻功值：" + QingGong + "\n";
-        //playerQingGongText.text = "硬功值：" + YingGong + "\n";
-        //playerQingGongText.text = "软功值：" + RuanGong + "\n";
-        //playerQingGongText.text = "眼功值：" + YanGong + "\n";
-        //playerQingGongText.text = "耳功值：" + ErGong + "\n";
-        //playerQingGongText.text = "阳内功值：" + NeiGongYang + "\n";
-        //playerQingGongText.text = "阴内功值：" + NeiGongYin + "\n";
+
     }
 
     // Trainings 
     public void TrainQingGong() {
-        playerState = "TrainingQingGong";
+        playerInfo.playerStatus = "TrainingQingGong";
+        playerInfo.QingGong += 1;
     }
     public void TrainYingGong() {
-        playerState = "TrainingYingGong";
+        playerInfo.playerStatus = "TrainingYingGong";
+        playerInfo.YingGong += 1;
     }
     public void TrainRuanGong() {
-        playerState = "TrainingRuanGong";
+        playerInfo.playerStatus = "TrainingRuanGong";
+        playerInfo.RuanGong += 1;
     }
     public void TrainYanGong() {
-        playerState = "TrainingYanGong";
+        playerInfo.playerStatus = "TrainingYanGong";
+        playerInfo.YanGong += 1;
     }
     public void TrainErGong() {
-        playerState = "TrainingErGong";
+        playerInfo.playerStatus = "TrainingErGong";
     }
 
-    // Get Player's state
+    // playerState getter
     public string GetPlayerState() {
-        return playerState;
+        return playerInfo.playerState;
     }
 
-    // AbilitiesGetters
+    // playerStatus getter
+    public string GetPlaerStatus() {
+        return playerInfo.playerStatus;
+    }
+
+    // Abilities Getters
     public float GetQingGong() {
-        return QingGong;
+        return playerInfo.QingGong;
     }
-    public float GetYingGong()
-    {
-        return YingGong;
+    public float GetYingGong(){
+        return playerInfo.YingGong;
     }
-    public float GetRuanGong()
-    {
-        return RuanGong;
+    public float GetRuanGong(){
+        return playerInfo.RuanGong;
     }
-    public float GetYanGong()
-    {
-        return YanGong;
+    public float GetYanGong(){
+        return playerInfo.YanGong;
     }
-    public float GetErGong()
-    {
-        return ErGong;
+    public float GetErGong(){
+        return playerInfo.ErGong;
     }
-    public float GetYangNeiGong()
-    {
-        return NeiGongYang;
+    public float GetYangNeiGong(){
+        return playerInfo.NeiGongYang;
     }
-    public float GetYinNeiGong()
-    {
-        return NeiGongYin;
+    public float GetYinNeiGong(){
+        return playerInfo.NeiGongYin;
+    }
+
+
+    public PlayerInfo GetPlayerInfo() {
+        return playerInfo;
+    }
+    public void loadCharacter(string jsonString ) {
+        playerInfo = PlayerInfo.CreateFromJSON(jsonString);
     }
 }

@@ -63,18 +63,19 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/PathsOfXia/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/Paths-of-Xia/PathsOfXia/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/PathsOfXia/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/Paths-of-Xia/PathsOfXia/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/PathsOfXia/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/Paths-of-Xia/PathsOfXia/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/PathsOfXia/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/don/Documents/Game Development/Paths of Xia/Paths-of-Xia/PathsOfXia/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
