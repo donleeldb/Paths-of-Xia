@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         dataPath = Path.Combine(Application.persistentDataPath, "CharacterData.txt");
+        if (File.Exists(dataPath))
+        {
+            LoadGame();
+        }
     }
 
     // Use this for awake
@@ -28,12 +32,14 @@ public class GameManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update ()
+    {
+
+    }
 
     public void SaveGame() {
         string jsonString = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo());

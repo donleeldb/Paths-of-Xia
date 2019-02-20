@@ -1,0 +1,82 @@
+
+OPTION 1: 
+
+PlayerInfo {
+	name : 令狐小当
+	stats : {
+
+	}
+	collections : {
+		sites : {
+
+		}
+		martial_arts : {
+			inner_martial_arts: {
+				{	id: 1,
+					name: 九阳神功
+					type: 阳
+					description: 由无名氏在阅读了九阴真经后觉得阴气太重，而自创的九阳神功。
+					learnined: yes
+					level: 900
+				},
+				{
+					id: 2,
+					name: 打狗棒法
+					type: 棍
+					description: 丐帮历代帮主相传的棒法。
+					learnined: no
+					level: 0
+				},
+				{
+					id: 3,
+					name: 一阳指
+					type: 空手
+					description: 云南段氏皇族的家传武学
+					learnined: yes
+					level: 100
+				}
+			}
+		}
+	}
+}
+
+
+OPTION 2:
+
+PlayerInfro {
+	name: 令狐小当
+	stats: {
+
+	}
+	collections : {
+		sites : {
+
+		}
+		learned_martial_arts : [
+			{
+				id: 1
+				level: 900
+			},
+			{
+				id: 3
+				level: 100
+			}
+		]
+	}
+}
+
+Martial_arts {
+	1 : {
+		name: 九阳神功
+		type: 阳
+		description: 由无名氏在阅读了九阴真经后觉得阴气太重，而自创的九阳神功。
+	},
+	2 : {
+		name: 打狗棒法
+		type: 棍
+		description: 丐帮历代帮主相传的棒法。
+	}
+	3 : {
+
+	}
+}
