@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+//using System.Web.Script.Serialization;
 
 [System.Serializable]
 public class PlayerInfo {
@@ -50,6 +51,12 @@ public class PlayerInfo {
     public HashSet<string> neiGongXinFas;   // 武学: 内功心法
     public HashSet<string> wuXueTaoLus;     // 武学: 武学套路
 
+    public List<int> learnedIMA;
+    public List<int> learnedOMA;
+
+    public Dictionary<int, int> IMALevel;
+    public Dictionary<int, int> OMALevel;
+
     public PlayerInfo() {
         this.playerState = "家";
         this.playerStatus = "";
@@ -88,7 +95,22 @@ public class PlayerInfo {
 
         this.neiGongXinFas = new HashSet<string>();
         this.wuXueTaoLus = new HashSet<string>();
-        
+
+        //this.learnedIMA = new List<int> { 1 };
+        //this.learnedOMA = new List<int> { 0, 2 };
+
+        this.IMALevel = new Dictionary<int, int>
+        {
+            {0, 100},
+            {1, 100}
+        };
+        this.OMALevel = new Dictionary<int, int>
+        {
+            {0, 100},
+            {1, 100},
+            {2, 100}
+        };
+
     }
 
     public static PlayerInfo CreateFromJSON(string jsonString)

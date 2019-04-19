@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
 
     [SerializeField] private GameObject player;
+
     string dataPath;
 
     // Use this for initialization
@@ -43,9 +44,12 @@ public class GameManager : MonoBehaviour {
 
     public void SaveGame() {
         string jsonString = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo());
+        string jsonStringIMA = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo().IMALevel);
         using (StreamWriter streamWriter = File.CreateText(dataPath))
         {
             streamWriter.Write(jsonString);
+            streamWriter.WriteLine();
+            streamWriter.Write(jsonStringIMA);
         }
     }
 
@@ -53,8 +57,11 @@ public class GameManager : MonoBehaviour {
     {
         using (StreamReader streamReader = File.OpenText(dataPath))
         {
-            string jsonString = streamReader.ReadToEnd();
+            string jsonString = streamReader.ReadLine();
             player.GetComponent<Player>().loadCharacter(jsonString);
+
+            string jsonStringIMA = streamReader.ReadLine();
+            player.GetComponent<Player>().GetPlayerInfo().IMALevel = JsonUtility.FromJson<Dictionary<int,int>>(jsonStringIMA);
         }
     }
 }

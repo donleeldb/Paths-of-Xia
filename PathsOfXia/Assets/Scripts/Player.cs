@@ -34,14 +34,17 @@ public class Player : MonoBehaviour {
                 playerInfo.isAtDoor = true;
                 playerInfo.arriveTime = "";
             }
+        } else
+        {
+            //playerInfo.isAtDoor = true;
         }
 
         if (playerInfo.isAtDoor)
         {
-            //playerInfo.isAtDoor = false;
-            //playerInfo.qingGong += 1;
-            //playerInfo.isHome = true;
-            Return();
+            playerInfo.isHome = true;
+            playerInfo.isAtDoor = false;
+            playerInfo.isAway = false;
+            playerInfo.OMALevel[2] += 10;
         }
 
 
@@ -49,19 +52,19 @@ public class Player : MonoBehaviour {
 
     // Trainings 
     public void TrainQingGong() {
-        switchState("Train", "QingGong");
+        //switchState("Train", "QingGong");
     }
     public void TrainYingGong() {
-        switchState("Train", "YingGong");
+        //switchState("Train", "YingGong");
     }
     public void TrainRuanGong() {
-        switchState("Train", "RuanGong");
+        //switchState("Train", "RuanGong");
     }
     public void TrainYanGong() {
-        switchState("Train", "YanGong");
+        //switchState("Train", "YanGong");
     }
     public void TrainErGong() {
-        switchState("Train", "ErGong");
+        //switchState("Train", "ErGong");
     }
 
     // playerState getter
@@ -84,7 +87,7 @@ public class Player : MonoBehaviour {
 
     public void Travel() {
         if (playerInfo.isHome) {
-            playerInfo.arriveTime = DateTime.Now.AddSeconds(10).ToString();
+            playerInfo.arriveTime = DateTime.Now.AddSeconds(20).ToString();
             playerInfo.isHome = false;
             playerInfo.isAway = true;
         }
@@ -94,33 +97,4 @@ public class Player : MonoBehaviour {
 
     }
 
-    public void switchState(string action, string target) {
-        if (action == "Train") {
-            switch(target)
-            {
-                case "QingGong":
-                    playerInfo.playerStatus = "TrainQingGong";
-                    break;
-
-                case "YingGong":
-                    playerInfo.playerStatus = "TrainYingGong";
-                    break;
-
-                case "RuanGong":
-                    playerInfo.playerStatus = "TrainRuanGong";
-                    break;
-
-                case "YanGong":
-                    playerInfo.playerStatus = "TrainYanGong";
-                    break;
-
-                case "ErGong":
-                    playerInfo.playerStatus = "TrainErGong";
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    }
 }

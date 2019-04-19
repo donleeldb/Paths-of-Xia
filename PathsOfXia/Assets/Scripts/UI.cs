@@ -8,6 +8,7 @@ public class UI : MonoBehaviour {
 
     [SerializeField] private GameObject player;
     private Player playerInstance;
+    private World worldInstance;
 
     //public GameManager gameManager;
     public Text AbilitiesText;
@@ -17,6 +18,7 @@ public class UI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         playerInstance = player.gameObject.GetComponent<Player>();
+        worldInstance = player.gameObject.GetComponent<World>();
 
         GameObject.Find("TrainQingGong").GetComponentInChildren<Text>().text = "修炼轻功";
         GameObject.Find("TrainYingGong").GetComponentInChildren<Text>().text = "修炼硬功";
@@ -28,16 +30,55 @@ public class UI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        PlayerStateText.text = "角色正在" + playerInstance.GetPlayerState();
+        PlayerStateText.text = "角色isHome:" + playerInstance.GetPlayerInfo().isHome + "\n";
+        PlayerStateText.text += "角色isAway:" + playerInstance.GetPlayerInfo().isAway + "\n";
 
-        AbilitiesText.text = "角色能力\n";
-        AbilitiesText.text += "轻功值：" + playerInstance.GetPlayerInfo().qingGong + "\n";
-        AbilitiesText.text += "硬功值：" + playerInstance.GetPlayerInfo().yingGong + "\n";
-        AbilitiesText.text += "软功值：" + playerInstance.GetPlayerInfo().ruanGong + "\n";
-        AbilitiesText.text += "眼功值：" + playerInstance.GetPlayerInfo().yanGong + "\n";
-        AbilitiesText.text += "耳功值：" + playerInstance.GetPlayerInfo().erGong + "\n";
-        AbilitiesText.text += "内功值（阳）：" + playerInstance.GetPlayerInfo().neiGongYang + "\n";
-        AbilitiesText.text += "内功值（阴）：" + playerInstance.GetPlayerInfo().neiGongYin + "\n";
+        PlayerStateText.text += "角色isAtDoor:" + playerInstance.GetPlayerInfo().isAtDoor + "\n";
+        PlayerStateText.text += "角色回家时间:" + playerInstance.GetPlayerInfo().arriveTime + "\n";
+
+        //AbilitiesText.text = "角色能力\n";
+        //AbilitiesText.text += "轻功值：" + playerInstance.GetPlayerInfo().qingGong + "\n";
+        //AbilitiesText.text += "硬功值：" + playerInstance.GetPlayerInfo().yingGong + "\n";
+        //AbilitiesText.text += "软功值：" + playerInstance.GetPlayerInfo().ruanGong + "\n";
+        //AbilitiesText.text += "眼功值：" + playerInstance.GetPlayerInfo().yanGong + "\n";
+        //AbilitiesText.text += "耳功值：" + playerInstance.GetPlayerInfo().erGong + "\n";
+        //AbilitiesText.text += "内功值（阳）：" + playerInstance.GetPlayerInfo().neiGongYang + "\n";
+        //AbilitiesText.text += "内功值（阴）：" + playerInstance.GetPlayerInfo().neiGongYin + "\n";
+
+
+        AbilitiesText.text = "角色现在会的内功有： ";
+        Dictionary<int, int> knownIMA = playerInstance.GetPlayerInfo().IMALevel;
+        AbilitiesText.text += knownIMA.Count;
+        foreach (KeyValuePair<int, int> entry in knownIMA)
+        {
+            // do something with entry.Value or entry.Key
+            AbilitiesText.text += worldInstance.mapIMA[entry.Key].name;
+            AbilitiesText.text += " 目前修为是： ";
+            AbilitiesText.text += entry.Value;
+            AbilitiesText.text += "\n";
+        }
+
+        AbilitiesText.text += "角色现在会的武功有： ";
+        Dictionary<int, int> knownOMA = playerInstance.GetPlayerInfo().OMALevel;
+        AbilitiesText.text += knownOMA.Count;
+        foreach (KeyValuePair<int, int> entry in knownOMA)
+        {
+            // do something with entry.Value or entry.Key
+            AbilitiesText.text += worldInstance.mapOMA[entry.Key].name;
+            AbilitiesText.text += " 目前修为是： ";
+            AbilitiesText.text += entry.Value;
+            AbilitiesText.text += "\n";
+        }
+        //List<int> knownOMA = playerInstance.GetPlayerInfo().learnedOMA;
+        //for (int id = 0; id < knownOMA.Count; id++)
+        //{
+        //    if (worldInstance.mapOMA.ContainsKey(id))
+        //    {
+        //        AbilitiesText.text += worldInstance.mapOMA[id].name;
+        //        AbilitiesText.text += "\n";
+        //    }
+        //}
+
 
     }
 
