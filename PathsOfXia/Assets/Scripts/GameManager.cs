@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         dataPath = Path.Combine(Application.persistentDataPath, "CharacterData.txt");
+        //Debug.Log("Text: " + dataPath);
         if (File.Exists(dataPath))
         {
             LoadGame();
@@ -44,12 +45,18 @@ public class GameManager : MonoBehaviour {
 
     public void SaveGame() {
         string jsonString = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo());
-        string jsonStringIMA = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo().IMALevel);
+        Debug.Log(jsonString);
+        //string jsonStringIMA = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo().IMALevel);
+        //Debug.Log(jsonStringIMA);
+        //Debug.Log(player.GetComponent<Player>().GetPlayerInfo().IMALevel);
+        //string jsonStringOMA = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo().OMALevel);
         using (StreamWriter streamWriter = File.CreateText(dataPath))
         {
-            streamWriter.Write(jsonString);
-            streamWriter.WriteLine();
-            streamWriter.Write(jsonStringIMA);
+            streamWriter.WriteLine(jsonString);
+            //streamWriter.WriteLine();
+            //streamWriter.WriteLine(jsonStringIMA);
+            //streamWriter.WriteLine();
+            //streamWriter.WriteLine(jsonStringOMA);
         }
     }
 
@@ -60,8 +67,11 @@ public class GameManager : MonoBehaviour {
             string jsonString = streamReader.ReadLine();
             player.GetComponent<Player>().loadCharacter(jsonString);
 
-            string jsonStringIMA = streamReader.ReadLine();
-            player.GetComponent<Player>().GetPlayerInfo().IMALevel = JsonUtility.FromJson<Dictionary<int,int>>(jsonStringIMA);
+            //string jsonStringIMA = streamReader.ReadLine();
+            //player.GetComponent<Player>().GetPlayerInfo().IMALevel = JsonUtility.FromJson<Dictionary<int,int>>(jsonStringIMA);
+
+            //string jsonStringOMA = streamReader.ReadLine();
+            //player.GetComponent<Player>().GetPlayerInfo().OMALevel = JsonUtility.FromJson<Dictionary<int, int>>(jsonStringOMA);
         }
     }
 }

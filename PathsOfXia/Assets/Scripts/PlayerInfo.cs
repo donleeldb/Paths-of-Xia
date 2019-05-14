@@ -48,11 +48,12 @@ public class PlayerInfo {
     public float elementalStat;              // 五行
     public float eightHexagramStat;         // 八卦
 
+    public int[] testArray;
     public HashSet<string> neiGongXinFas;   // 武学: 内功心法
     public HashSet<string> wuXueTaoLus;     // 武学: 武学套路
 
-    public List<int> learnedIMA;
-    public List<int> learnedOMA;
+    //public List<int> learnedIMA;
+    //public List<int> learnedOMA;
 
     public Dictionary<int, int> IMALevel;
     public Dictionary<int, int> OMALevel;
@@ -93,23 +94,25 @@ public class PlayerInfo {
         this.elementalStat = 1f;
         this.eightHexagramStat = 1f;
 
+        this.testArray = new int[1];
+
         this.neiGongXinFas = new HashSet<string>();
         this.wuXueTaoLus = new HashSet<string>();
 
         //this.learnedIMA = new List<int> { 1 };
         //this.learnedOMA = new List<int> { 0, 2 };
 
-        this.IMALevel = new Dictionary<int, int>
-        {
-            {0, 100},
-            {1, 100}
-        };
-        this.OMALevel = new Dictionary<int, int>
-        {
-            {0, 100},
-            {1, 100},
-            {2, 100}
-        };
+        //this.IMALevel = new Dictionary<int, int>
+        //{
+        //    {0, 100},
+        //    {1, 100}
+        //};
+        //this.OMALevel = new Dictionary<int, int>
+        //{
+        //    {0, 100},
+        //    {1, 100},
+        //    {2, 100}
+        //};
 
     }
 

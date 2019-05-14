@@ -47,28 +47,30 @@ public class UI : MonoBehaviour {
 
 
         AbilitiesText.text = "角色现在会的内功有： ";
-        Dictionary<int, int> knownIMA = playerInstance.GetPlayerInfo().IMALevel;
-        AbilitiesText.text += knownIMA.Count;
-        foreach (KeyValuePair<int, int> entry in knownIMA)
+        int[] knownIMA = playerInstance.GetPlayerInfo().testArray;
+        AbilitiesText.text += knownIMA.Length;
+        int i = 0;
+        foreach (int level in knownIMA)
         {
             // do something with entry.Value or entry.Key
-            AbilitiesText.text += worldInstance.mapIMA[entry.Key].name;
+            AbilitiesText.text += worldInstance.mapIMA[i].name;
             AbilitiesText.text += " 目前修为是： ";
-            AbilitiesText.text += entry.Value;
+            AbilitiesText.text += knownIMA[i];
             AbilitiesText.text += "\n";
+            i++;
         }
 
-        AbilitiesText.text += "角色现在会的武功有： ";
-        Dictionary<int, int> knownOMA = playerInstance.GetPlayerInfo().OMALevel;
-        AbilitiesText.text += knownOMA.Count;
-        foreach (KeyValuePair<int, int> entry in knownOMA)
-        {
-            // do something with entry.Value or entry.Key
-            AbilitiesText.text += worldInstance.mapOMA[entry.Key].name;
-            AbilitiesText.text += " 目前修为是： ";
-            AbilitiesText.text += entry.Value;
-            AbilitiesText.text += "\n";
-        }
+        //AbilitiesText.text += "角色现在会的武功有： ";
+        //int[] knownOMA = playerInstance.GetPlayerInfo().OMALevel;
+        //AbilitiesText.text += knownOMA.Count;
+        //foreach (KeyValuePair<int, int> entry in knownOMA)
+        //{
+        //    // do something with entry.Value or entry.Key
+        //    AbilitiesText.text += worldInstance.mapOMA[entry.Key].name;
+        //    AbilitiesText.text += " 目前修为是： ";
+        //    AbilitiesText.text += entry.Value;
+        //    AbilitiesText.text += "\n";
+        //}
         //List<int> knownOMA = playerInstance.GetPlayerInfo().learnedOMA;
         //for (int id = 0; id < knownOMA.Count; id++)
         //{
