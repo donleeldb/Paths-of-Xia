@@ -6,19 +6,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
+    public GameObject enterHomeWindow;
+    public GameObject worldMapWindow;
 
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject world;
+    [SerializeField] private GameObject ui;
+    private bool playerActive = true;
 
     string dataPath;
+
+    public bool PlayerActive
+    {
+        get { return playerActive; }
+    }
 
     // Use this for initialization
     void Start () {
         dataPath = Path.Combine(Application.persistentDataPath, "CharacterData.txt");
-        //Debug.Log("Text: " + dataPath);
-        if (File.Exists(dataPath))
-        {
-            LoadGame();
-        }
+        Debug.Log("Text: " + dataPath);
     }
 
     // Use this for awake
@@ -34,6 +40,7 @@ public class GameManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+        //player.SetActive(false);
 
     }
 
@@ -43,35 +50,58 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    public void StartGame()
+    {
+        if (File.Exists(dataPath))
+        {
+            LoadGame();
+            Debug.Log("LoadGame() function called");
+        }
+        player.SetActive(true);
+        playerActive = true;
+    }
+
     public void SaveGame() {
         string jsonString = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo());
-        Debug.Log(jsonString);
-        //string jsonStringIMA = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo().IMALevel);
-        //Debug.Log(jsonStringIMA);
-        //Debug.Log(player.GetComponent<Player>().GetPlayerInfo().IMALevel);
-        //string jsonStringOMA = JsonUtility.ToJson(player.GetComponent<Player>().GetPlayerInfo().OMALevel);
+
         using (StreamWriter streamWriter = File.CreateText(dataPath))
         {
             streamWriter.WriteLine(jsonString);
-            //streamWriter.WriteLine();
-            //streamWriter.WriteLine(jsonStringIMA);
-            //streamWriter.WriteLine();
-            //streamWriter.WriteLine(jsonStringOMA);
         }
     }
 
     public void LoadGame()
     {
-        using (StreamReader streamReader = File.OpenText(dataPath))
+        if (playerActive)
         {
-            string jsonString = streamReader.ReadLine();
-            player.GetComponent<Player>().loadCharacter(jsonString);
+            using (StreamReader streamReader = File.OpenText(dataPath))
+            {
+                string jsonString = streamReader.ReadLine();
+                player.GetComponent<Player>().LoadCharacter(jsonString);
 
-            //string jsonStringIMA = streamReader.ReadLine();
-            //player.GetComponent<Player>().GetPlayerInfo().IMALevel = JsonUtility.FromJson<Dictionary<int,int>>(jsonStringIMA);
-
-            //string jsonStringOMA = streamReader.ReadLine();
-            //player.GetComponent<Player>().GetPlayerInfo().OMALevel = JsonUtility.FromJson<Dictionary<int, int>>(jsonStringOMA);
+            }
         }
+
+    }
+
+    public void OpenEnterHomeWindow()
+    {
+        enterHomeWindow.SetActive(true);
+    }
+
+    public void CloseEnterHomeWindow()
+    {
+        enterHomeWindow.SetActive(false);
+        player.GetComponent<Player>().FinishEnterHome();
+    }
+
+    public void OpenMapWindow()
+    {
+        worldMapWindow.SetActive(true);
+    }
+
+    public void CloseMapWindow()
+    {
+        worldMapWindow.SetActive(false);
     }
 }
